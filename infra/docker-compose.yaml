@@ -1,0 +1,31 @@
+version: "3.9"
+
+services:
+  rabbitmq:
+    image: rabbitmq:management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+  creator_db:
+    image: postgres
+    env_file:
+      - ../creator/.env
+    ports:
+      - "5432:5432"
+    volumes:
+      - creator_pg:/var/lib/postgresql/data
+
+  querier_db:
+    image: postgres
+    env_file:
+      - ../querier/.env
+    ports:
+      - "5433:5432"
+    volumes:
+      - querier_pg:/var/lib/postgresql/data
+
+
+volumes:
+  creator_pg:
+  querier_pg:
