@@ -18,6 +18,7 @@ public class CreateItemController {
         this.createItem = createItem;
     }
 
+    // Whenever POST /v1/items is called, this method is invoked.
     @PostMapping
     public ItemCreatedDTO create(@RequestBody CreateItemFormDTO body) {
         Item newItem = this.createItem.createNewItem(body.getName(), body.getCategory());
